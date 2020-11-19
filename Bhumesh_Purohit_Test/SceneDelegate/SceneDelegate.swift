@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = TestViewController()    // In ViewController.swift
+        window?.rootViewController = AboutCountry()    // In ViewController.swift
         window?.rootViewController?.view.backgroundColor = .yellow  // So we can see it
         window?.makeKeyAndVisible()
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.

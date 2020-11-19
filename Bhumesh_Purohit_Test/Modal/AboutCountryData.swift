@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ApiData: NSObject {
+class AboutCountryData: NSObject {
     
     var title: String = "" // For set Title
     var strdescription: String = "" // For set Description
@@ -18,5 +18,6 @@ class ApiData: NSObject {
         title = dictionary["title"] as? String ?? ""
         strdescription = dictionary["description"] as? String ?? ""
         imageHref = dictionary["imageHref"] as? String ?? ""
+      //  print(imageHref)
     }
 }

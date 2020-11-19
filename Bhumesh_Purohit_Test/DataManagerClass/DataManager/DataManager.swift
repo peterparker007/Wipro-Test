@@ -18,7 +18,7 @@ class DataManager: NSObject {
   
    //use this function and get your output
     
-    public func GetData( completion: @escaping (_ result: NSDictionary) -> Void){
+    public func GetDataFromAPI( completion: @escaping (_ result: NSDictionary) -> Void){
          if self.checkInternet() == true { // check Internet Connection
                     
         RequestManger.sharedManager.jsonParser() {
@@ -41,7 +41,8 @@ class DataManager: NSObject {
                 completion(dict)
             }
         }
-        }
+        }         
+        
     }
     func checkInternet()-> Bool {
         if APPDELEGATE.reachability!.connection == .unavailable {

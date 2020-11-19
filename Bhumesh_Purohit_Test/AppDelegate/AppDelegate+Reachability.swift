@@ -77,9 +77,17 @@ extension AppDelegate {
     /*  showNetworkwindow */
     func showNetworkwindow() {
         self.isNetworkScreenPresent = false
-     //  let objNoInternetVc = UIStoryboard.noInternetVC()
-    //   self.topViewController?.present(objNoInternetVc!, animated: true)
+          self.showAlertViewWithMessage("Wipro_Test", message: "No internet available")
+      // let objNoInternetVc = UIStoryboard.noInternetVC()
+     //  self.topViewController?.present(objNoInternetVc!, animated: true)
     }
+    func showAlertViewWithMessage(_ title: String, message: String) {
+           DispatchQueue.main.async {
+               let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+               alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+               AppDelegate.delegate().topViewController?.present(alertController, animated: true, completion: nil)
+           }
+       }
     func hideNetworkWindow() {
         isNetworkScreenPresent = true
         window?.rootViewController?.dismiss(animated: true)
@@ -88,7 +96,11 @@ extension AppDelegate {
     
     //MARK: - topViewController
     var topViewController: UIViewController? {
-        return topViewController(withRootViewController: UIApplication.shared.keyWindow?.rootViewController)
+            if #available(iOS 13, *) {
+                return  topViewController(withRootViewController: UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController)
+            } else {
+                return topViewController(withRootViewController: UIApplication.shared.keyWindow?.rootViewController)
+        }
     }
     // set topViewController
     func topViewController(withRootViewController rootViewController: UIViewController?) -> UIViewController? {
